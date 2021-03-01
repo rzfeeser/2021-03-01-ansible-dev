@@ -1,0 +1,64 @@
+---
+- name: Setup apache2 server
+  hosts: fry
+  gather_facts: no
+  connection: ssh
+  become: yes
+
+  tasks:
+  - name: Install apache2 server and ensure pip is installed
+    apt:
+            name:
+                    - apache2
+                    - python3-pip
+            state: present
+
+  - name: Move configuration block to secure the file
+    blockinfile:
+            insertafter: EOF
+            path: /etc/apache2/apache2.conf
+            block: |
+                    Alias /admin /var/www/html/admin
+
+                    <Directory /var/www/html/admin>
+                      <Files secure.txt>
+                        AuthType basic
+                        AuthName "Secured Files area"
+                        AuthUserFile /etc/apache2/.htpasswd
+                        Require user sammy
+                      </Files>
+                      order allow,deny
+                      deny from all
+                      satisfy any
+                    </Directory>
+
+  - name: create the admin/ folder
+    file:
+            state: directory
+            path: /var/www/html/admin/
+
+  - name: create a protected file we can download
+    copy:
+            content: "This is a super secret file!\nIf you can read it, you hacked the gibson!"
+            dest: /var/www/html/admin/secure.txt
+            mode: u=rw,g=r,o=r
+
+  # required for htpasswd to be controlled by python3
+  - name: install passlib
+    pip:
+            name: passlib
+            state: present
+
+  # Apache webserver uses htpasswd to make passwords, it so happens ansible has a module to
+  # edit this password file. In production, passwords should always be encrypted with vault!
+  - name: set a password via htpasswd
+    htpasswd:
+            path: /etc/apache2/.htpasswd
+            name: sammy
+            password: larry
+            owner: root
+            group: root
+
+  - name: restart service
+    shell: "/etc/init.d/apache2 restart"
+

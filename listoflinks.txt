@@ -1,0 +1,5 @@
+Ansible Links:
+- https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
+- https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html
+- https://docs.ansible.com/ansible/2.8/modules/list_of_all_modules.html
+- https://yaml.org/spec/1.2/spec.html

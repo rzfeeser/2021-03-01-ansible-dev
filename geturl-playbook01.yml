@@ -1,0 +1,11 @@
+---
+- name: Getting files
+  hosts: planetexpress
+  gather_facts: no
+
+  tasks:
+  - name: "Download virus protection software to install on hosts"
+    get_url:
+      url: http://www.clamav.net/downloads/production/clamav-0.99.3.tar.gz
+      dest: ~/clamav-0.99.3.tar.gz
+

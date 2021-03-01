@@ -1,0 +1,12 @@
+---
+- name: Our first play
+  hosts: planetexpress
+
+  tasks:
+
+    - name: Install steam locomotive on ALL machines
+      apt:
+        name: sl
+        state: present
+      become: yes # run as sudo
+

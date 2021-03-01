@@ -1,0 +1,13 @@
+---
+- name: Copying files from controller to hosts
+  connection: ssh   # this a default
+  hosts: planetexpress  # this comes from inv/dev/hosts
+  gather_facts: no   # default is yes (runs setup.py fact collection)
+
+  tasks:
+
+    - name: Copy Fry's resume to hosts
+      copy:
+        src: ~/ans/files/fry.txt   # on the controller
+        dest: ~/fry.txt      # home directory on hosts
+

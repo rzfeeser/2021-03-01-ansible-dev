@@ -1,0 +1,14 @@
+---
+- name: Our first play
+  connection: ssh
+  gather_facts: yes
+  hosts: planetexpress:!farnsworth
+
+  tasks:
+
+    - name: Install steam locomotive on ALL machines
+      apt:
+        name: sl
+        state: present
+      become: yes # run as sudo
+

@@ -1,0 +1,34 @@
+---
+- name: Get-URL Download the Protected File
+  hosts: localhost  # target ourselves
+  connection: local # we do not want to SSH anywhere. Run these actions locally
+
+  tasks:
+    # in this task we alert Ansible to expect a 401 response
+    # the 'register' keyword saves the response sent back to the uri module
+    - name: Access the WebSite and make sure the URL is live
+      uri:
+        url: http://10.10.2.4/admin/secure.txt
+        status_code: 401
+      register: validateurl
+
+    - name: "INFO: HTTP Response for the URL"
+      debug:
+              var: validateurl
+
+    - name: Access the same URL with Basic Authentication and Download the file
+      get_url:
+        url: http://10.10.2.4/admin/secure.txt
+        url_password: larry
+        url_username: sammy
+        dest: ~/ansible-downloaded-the-secret-file.txt
+
+    - name: Display the File contents
+      command: >
+         cat ~/ansible-downloaded-the-secret-file.txt
+      register: results
+
+    - name: "INFO: Display the File Contents"
+      debug:
+              var: results
+

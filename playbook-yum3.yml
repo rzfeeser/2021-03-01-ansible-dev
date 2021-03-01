@@ -1,0 +1,24 @@
+---
+ - name: Install EPEL libraries in YUM
+   hosts: planetexpress
+   become: yes # run entire playbook with sudo
+
+   vars:
+           stufftoinstall:
+                   - fail2ban
+                   - moon-buggy
+                   - sl
+   tasks:
+    - name: "Install epel-release"
+      yum:
+        name: epel-release
+        state: present
+      when: ansible_distribution == "CentOS"
+
+    - name: "Update yum repos and Install package X"
+      yum:
+        update_cache: True
+        name: "{{ stufftoinstall }}"
+        state: latest
+      when: ansible_distribution == "CentOS"
+

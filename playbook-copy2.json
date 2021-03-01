@@ -1,0 +1,19 @@
+[
+   {
+      "name": "Copying content from controller to hosts",
+      "hosts": "planetexpress:!farnsworth",
+      "connection": "ssh",
+      "gather_facts": "yes",
+      "tasks": [
+         {
+            "name": "Copy gather fact var data into hosts",
+            "copy": {
+               "content": "{{ ansible_all_ipv4_addresses }}",
+               "dest": "~/ipv4info.txt",
+               "backup": "yes",
+               "force": "yes"
+            }
+         }
+      ]
+   }
+]
