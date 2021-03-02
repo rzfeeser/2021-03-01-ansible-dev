@@ -1,0 +1,17 @@
+- name: Loop with 3 second pause between runs
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+
+  - name: Run a debug with 3 second pauses
+    debug:
+        var: item
+    loop:
+      - server1
+      - server2
+      - server3
+      - server4
+    loop_control:
+      pause: 3  # in seconds
+

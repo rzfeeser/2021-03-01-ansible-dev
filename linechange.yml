@@ -1,0 +1,17 @@
+---
+- name: Exploring line in file
+  # run against planetexpress group but not farnsworth
+  hosts: planetexpress:!farnsworth
+
+  vars:
+   - fileloc: "/var/log/bootstrap.log"
+
+  tasks:
+   - name: "Insert a line into {{ fileloc }}"
+     lineinfile:
+       path: "{{ fileloc }}"
+       regexp: "^Setting up lib.*"
+       line: "REDACTED BY ANSIBLE lineinfile module"
+       backup: yes
+     become: true
+

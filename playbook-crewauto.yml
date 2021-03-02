@@ -1,0 +1,37 @@
+---
+ - name: Playbook with tags
+   hosts: planetexpress
+
+   vars:
+     cargo1: "prizes for claw crane"
+     cargo2: "popcorn"
+     cargo3: "pillows"
+
+   # this file will fill in the empty values found in the *.j2 files
+   vars_files:
+     - /home/student/ans/vars/tempvars.yml
+
+   tasks:
+     - name: "Deploy orders to the crew"
+       template:
+         src: /home/student/ans/templates/orders.txt.j2 #name of the template on ansible controller
+         dest: ~/orders.txt #name of the completed file to be placed on the target system
+       tags:
+       - orders
+
+     - name: "Deploy the cargo manifest"
+       template:
+         src: /home/student/ans/templates/cargo_manifest.txt.j2 #name of the template on ansible controller
+         dest: ~/cargo_manifest.txt #name of the completed file to be placed on the target system
+       tags:
+       - cargo
+       - ship_prep
+
+     - name: "Install navigation charts"
+       template:
+         src: /home/student/ans/templates/navigation_charts.cfg.j2 #name of the template on ansible controller
+         dest: ~/navigation_charts.cfg #name of the completed file to be placed on the target system
+       tags:
+       - nav
+       - ship_prep
+

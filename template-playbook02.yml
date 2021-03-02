@@ -1,0 +1,22 @@
+---
+- name: Exploring the template module and jinja expressions
+  hosts: planetexpress
+  connection: ssh
+  gather_facts: no   # runs the "setup" module on remote hosts
+
+  # these variables are used to build templates
+  vars_files:
+    - vars/planetexpress.yml
+
+
+  tasks:
+    - name: Configure spaceship registration
+      template: 
+        src: templates/ship.cfg.j2    # name of the template on ansible controller
+        dest: ~/ship.cfg              # name of the completed file to be placed on the target system
+        
+    - name: Configure mission orders
+      template:
+        src: templates/mission-orders.txt.j2    # name of the template on ansible controller
+        dest: ~/mission-orders.txt              # name of the completed file to be placed on the target system
+

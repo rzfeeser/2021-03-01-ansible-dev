@@ -11,15 +11,20 @@
         url: http://10.10.2.4/admin/secure.txt
         status_code: 401
       register: validateurl
+      tags:
+              - wip
 
-    - name: "INFO: HTTP Response for the URL"
+    - name: Debug - Trying to discover what the auth value is
       debug:
-              var: validateurl
+              var: validateurl.www_authenticate
+              verbosity: 1
+      tags:
+              - wip
 
     - name: Access the same URL with Basic Authentication and Download the file
       get_url:
         url: http://10.10.2.4/admin/secure.txt
-        url_password: larry
+        url_password: "{{ validateurl.www_authenticate }}"
         url_username: sammy
         dest: ~/ansible-downloaded-the-secret-file.txt
 

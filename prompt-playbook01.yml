@@ -1,0 +1,40 @@
+---
+- name: How to prompt for variables
+  hosts: localhost
+  gather_facts: no
+
+  vars_prompt:
+    - name: "yourpassword"  # Variable name to define
+      prompt: "What is your password?" # Question to ask
+      ## do not reveal the password (optional)
+      private: yes
+      ## run this encryption method (optional)
+      ## type the password twice (optional)
+      confirm: yes
+      ## this is the size of the RAND you'd like to have generated (optional)
+      # salt: slappysquirrel88 # provide your own RAND (optional)
+      ## default to this password (optional)
+
+  tasks:
+    - name: Print out the password
+      debug:
+        msg: "{{ yourpassword }}"
+      no_log: yes
+
+      #    - name: Set a value of a variable to A
+      #      set_fact:
+      #              ramvar: "A"
+      #      when: sky == "sunny"
+      #
+      #    - name: Set a value of a variable to B
+      #      set_fact:
+      #              ramvar: B
+      #      when: sky != "sunny"
+      #
+    - name: Set a BUNCH of variables when sky is sunny
+      include_vars: ~/path/to/file.yml
+      when: sky == "sunny"
+
+    - name: Set a BUNCH of variables a DIFF way when sky is NOT sunny
+      include_vars: ~/path/to/difffile.yml
+      when: sky != "sunny"

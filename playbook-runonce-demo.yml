@@ -1,0 +1,14 @@
+- name: A play to demo delegate_to and run_once
+  hosts: planetexpress
+  connection: ssh
+  gather_facts: no
+
+  tasks:
+          - name: Ensure a directory exists
+            file:
+                    state: directory
+                    path: ~/temp_log_dir/
+                    #run_once: true
+            delegate_to: fry         # run this task against CONTROLER
+                                     # not against planetexpress
+

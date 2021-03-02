@@ -1,0 +1,43 @@
+---
+ - name: Intro to Dictionaries
+   hosts: localhost
+   gather_facts: no
+
+   vars:
+     configA: exampleA.cfg    # var mapped to a str
+     configB: exampleB.cfg    # var mapped to a str
+     licensetypes:            # var mapped to a list of strs
+       opentypes:
+         - apache2.0
+         - gnu public license (GPL)
+         - mit license
+         - mozilla public license
+       paytypes:
+         - windows
+         - redhat
+         - apple
+
+   tasks:
+    - name: Recall a key value pair mapping
+      debug:
+        var: configA        # returns exampleA.cfg
+
+    - name: Recall a key value mapping where the value is a list
+      debug:
+        var: licensetypes.opentypes   # returns a list of license types
+
+    - name: Display the MIT License
+      debug:
+        var: licensetypes.opentypes[2]   # returns mit license
+
+    - name: Display Windows
+      debug:
+        var: licensetypes.paytypes[0]   # returns windows
+
+    - name: Use JINJA filters to "tweak" data
+      debug:
+        var: 
+
+    - name: Use python within Ansible to "tweak" data
+      debug:
+        var: licensetypes.opentypes[-1].split(" ")[1].upper()

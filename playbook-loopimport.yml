@@ -1,0 +1,11 @@
+- name: Example of looping across a file
+  hosts: localhost
+  connectiion: local
+  gather_facts: no
+
+  tasks:
+          - import_tasks: mytasks.yml
+            loop:
+                    - val1
+                    - val2
+                    - val3

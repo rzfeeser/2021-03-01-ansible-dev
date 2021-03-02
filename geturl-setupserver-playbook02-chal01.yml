@@ -1,19 +1,23 @@
 ---
 - name: Setup apache2 server
-  hosts: fry
+  hosts: planetexpress
   gather_facts: no
   connection: ssh
   become: yes
 
+  vars:
+          un: sammy
+          pw: larry
+
+
+
   tasks:
-  - name: Install apache2 server and ensur pip is installed
+  - name: Install apache2 server and ensure pip is installed
     apt:
             name:
                     - apache2
                     - python3-pip
             state: present
-    become: yes
-    no_log: yes
 
   - name: Move configuration block to secure the file
     blockinfile:
@@ -56,8 +60,8 @@
   - name: set a password via htpasswd
     htpasswd:
             path: /etc/apache2/.htpasswd
-            name: sammy
-            password: larry
+            name: "{{ un }}"
+            password: "{{ pw }}"
             owner: root
             group: root
 
