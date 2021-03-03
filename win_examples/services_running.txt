@@ -1,0 +1,504 @@
+Agent Activation Runtime_c6f5c
+
+AllJoyn Router Service
+
+Application Layer Gateway Service
+
+Application Identity
+
+Application Information
+
+Application Management
+
+App Readiness
+
+Microsoft App-V Client
+
+AppX Deployment Service (AppXSVC)
+
+AssignedAccessManager Service
+
+Windows Audio Endpoint Builder
+
+Windows Audio
+
+Cellular Time
+
+ActiveX Installer (AxInstSV)
+
+GameDVR and Broadcast User Service_c6f5c
+
+BitLocker Drive Encryption Service
+
+Base Filtering Engine
+
+Background Intelligent Transfer Service
+
+Bluetooth User Support Service_c6f5c
+
+Background Tasks Infrastructure Service
+
+Bluetooth Audio Gateway Service
+
+AVCTP service
+
+Bluetooth Support Service
+
+Capability Access Manager Service
+
+CaptureService_c6f5c
+
+Clipboard User Service_c6f5c
+
+Connected Devices Platform Service
+
+Connected Devices Platform User Service_c6f5c
+
+Certificate Propagation
+
+Client License Service (ClipSVC)
+
+COM+ System Application
+
+ConsentUX_c6f5c
+
+CoreMessaging
+
+CredentialEnrollmentManagerUserSvc_c6f5c
+
+Cryptographic Services
+
+Offline Files
+
+DCOM Server Process Launcher
+
+Optimize drives
+
+DeviceAssociationBroker_c6f5c
+
+Device Association Service
+
+Device Install Service
+
+DevicePicker_c6f5c
+
+DevicesFlow_c6f5c
+
+DevQuery Background Discovery Broker
+
+DHCP Client
+
+Microsoft (R) Diagnostics Hub Standard Collector Service
+
+Diagnostic Execution Service
+
+Connected User Experiences and Telemetry
+
+Display Policy Service
+
+Display Enhancement Service
+
+Device Management Enrollment Service
+
+Device Management Wireless Application Protocol (WAP) Push message Routing Service
+
+DNS Client
+
+Delivery Optimization
+
+Wired AutoConfig
+
+Diagnostic Policy Service
+
+Device Setup Manager
+
+Data Sharing Service
+
+Data Usage
+
+Extensible Authentication Protocol
+
+Microsoft Edge Update Service (edgeupdate)
+
+Microsoft Edge Update Service (edgeupdatem)
+
+Encrypting File System (EFS)
+
+Embedded Mode
+
+Enterprise App Management Service
+
+Windows Event Log
+
+COM+ Event System
+
+Fax
+
+Function Discovery Provider Host
+
+Function Discovery Resource Publication
+
+File History Service
+
+Windows Font Cache Service
+
+Windows Camera Frame Server
+
+Group Policy Client
+
+GraphicsPerfSvc
+
+Human Interface Device Service
+
+HV Host Service
+
+Windows Mobile Hotspot Service
+
+IKE and AuthIP IPsec Keying Modules
+
+Microsoft Store Install Service
+
+IP Helper
+
+IP Translation Configuration Service
+
+CNG Key Isolation
+
+KtmRm for Distributed Transaction Coordinator
+
+Server
+
+Workstation
+
+Geolocation Service
+
+Windows License Manager Service
+
+Link-Layer Topology Discovery Mapper
+
+TCP/IP NetBIOS Helper
+
+Local Session Manager
+
+Language Experience Service
+
+Downloaded Maps Manager
+
+MessagingService_c6f5c
+
+Microsoft Edge Elevation Service (MicrosoftEdgeElevationService)
+
+Windows Mixed Reality OpenXR Service
+
+Windows Defender Firewall
+
+Distributed Transaction Coordinator
+
+Microsoft iSCSI Initiator Service
+
+Windows Installer
+
+Natural Authentication
+
+Network Connectivity Assistant
+
+Network Connection Broker
+
+Network Connected Devices Auto-Setup
+
+Netlogon
+
+Network Connections
+
+Network List Service
+
+Network Setup Service
+
+Net.Tcp Port Sharing Service
+
+Microsoft Passport Container
+
+Microsoft Passport
+
+Network Location Awareness
+
+Network Store Interface Service
+
+Sync Host_c6f5c
+
+Peer Networking Identity Manager
+
+Peer Networking Grouping
+
+Program Compatibility Assistant Service
+
+BranchCache
+
+Windows Perception Simulation Service
+
+Performance Counter DLL Host
+
+Phone Service
+
+Contact Data_c6f5c
+
+Performance Logs & Alerts
+
+Plug and Play
+
+PNRP Machine Name Publication Service
+
+Peer Name Resolution Protocol
+
+IPsec Policy Agent
+
+Power
+
+Printer Extensions and Notifications
+
+PrintWorkflow_c6f5c
+
+User Profile Service
+
+Windows PushToInstall Service
+
+Quality Windows Audio Video Experience
+
+Remote Access Auto Connection Manager
+
+Remote Access Connection Manager
+
+Routing and Remote Access
+
+Remote Registry
+
+Retail Demo Service
+
+Radio Management Service
+
+RPC Endpoint Mapper
+
+Remote Procedure Call (RPC) Locator
+
+Remote Procedure Call (RPC)
+
+Security Accounts Manager
+
+Smart Card
+
+Smart Card Device Enumeration Service
+
+Task Scheduler
+
+Smart Card Removal Policy
+
+Windows Backup
+
+Secondary Logon
+
+Windows Security Service
+
+Payments and NFC/SE Manager
+
+System Event Notification Service
+
+Windows Defender Advanced Threat Protection Service
+
+Sensor Data Service
+
+Sensor Service
+
+Sensor Monitoring Service
+
+Remote Desktop Configuration
+
+System Guard Runtime Monitor Broker
+
+Internet Connection Sharing (ICS)
+
+Spatial Data Service
+
+Shell Hardware Detection
+
+Shared PC Account Manager
+
+Microsoft Storage Spaces SMP
+
+Microsoft Windows SMS Router Service.
+
+SNMP Trap
+
+Windows Perception Service
+
+Print Spooler
+
+Software Protection
+
+SSDP Discovery
+
+OpenSSH Authentication Agent
+
+Secure Socket Tunneling Protocol Service
+
+State Repository Service
+
+Windows Image Acquisition (WIA)
+
+Storage Service
+
+Spot Verifier
+
+Microsoft Software Shadow Copy Provider
+
+SysMain
+
+System Events Broker
+
+Touch Keyboard and Handwriting Panel Service
+
+Telephony
+
+Remote Desktop Services
+
+Themes
+
+Storage Tiers Management
+
+Time Broker
+
+Web Account Manager
+
+Distributed Link Tracking Client
+
+Recommended Troubleshooting Service
+
+Windows Modules Installer
+
+Auto Time Zone Updater
+
+Udk User Service_c6f5c
+
+User Experience Virtualization Service
+
+Microsoft Update Health Service
+
+Remote Desktop Services UserMode Port Redirector
+
+User Data Storage_c6f5c
+
+UPnP Device Host
+
+User Data Access_c6f5c
+
+User Manager
+
+Update Orchestrator Service
+
+Volumetric Audio Compositor Service
+
+Credential Manager
+
+Virtual Disk
+
+Hyper-V Guest Service Interface
+
+Hyper-V Heartbeat Service
+
+Hyper-V Data Exchange Service
+
+Hyper-V Remote Desktop Virtualization Service
+
+Hyper-V Guest Shutdown Service
+
+Hyper-V Time Synchronization Service
+
+Hyper-V PowerShell Direct Service
+
+Hyper-V Volume Shadow Copy Requestor
+
+Volume Shadow Copy
+
+Windows Time
+
+Windows Update Medic Service
+
+WalletService
+
+WarpJITSvc
+
+Block Level Backup Engine Service
+
+Windows Biometric Service
+
+Windows Connection Manager
+
+Windows Connect Now - Config Registrar
+
+Diagnostic Service Host
+
+Diagnostic System Host
+
+Microsoft Defender Antivirus Network Inspection Service
+
+WebClient
+
+Windows Event Collector
+
+Windows Encryption Provider Host Service
+
+Problem Reports Control Panel Support
+
+Windows Error Reporting Service
+
+Wi-Fi Direct Services Connection Manager Service
+
+Still Image Acquisition Events
+
+Microsoft Defender Antivirus Service
+
+WinHTTP Web Proxy Auto-Discovery Service
+
+Windows Management Instrumentation
+
+Windows Remote Management (WS-Management)
+
+Windows Insider Service
+
+WLAN AutoConfig
+
+Microsoft Account Sign-in Assistant
+
+Local Profile Assistant Service
+
+Windows Management Service
+
+WMI Performance Adapter
+
+Windows Media Player Network Sharing Service
+
+Work Folders
+
+Parental Controls
+
+Portable Device Enumerator Service
+
+Windows Push Notifications System Service
+
+Windows Push Notifications User Service_c6f5c
+
+Security Center
+
+Windows Search
+
+Windows Update
+
+WWAN AutoConfig
+
+Xbox Live Auth Manager
+
+Xbox Live Game Save
+
+Xbox Accessory Management Service
+
+Xbox Live Networking Service
+
