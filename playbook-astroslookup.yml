@@ -1,0 +1,21 @@
+---
+- name: Learning why methods are super cool
+  connection: local
+  hosts: localhost
+  gather_facts: no # we are running on local host, we don't need facts about "us"
+
+  vars:
+          astroapi: "http://api.open-notify.org/astros.json"
+
+  tasks:
+          - name: Lookup astros API
+            uri:
+                    method: GET
+                    url: "{{ astroapi }}"
+            register: results
+
+          - name: Print out the results that were returned
+            debug:
+                    var: results.keys()  # use the METHOD trick to reveal the keys
+                    verbosity: 1   # in the event that the playbook breaks
+                                   # run with -v to help with debugging

@@ -1,0 +1,20 @@
+# How do I learn more about methods??
+
+python3
+
+# to reveal methods you can use, run the following:
+
+dir(list)
+
+dir(str)
+
+dir(dict)
+
+# focus on anything WITHOUT underscores
+# to learn more about a method...
+
+help(str.split)
+
+help(str.strip)
+
+help(dict.key)
