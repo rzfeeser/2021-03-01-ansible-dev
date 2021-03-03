@@ -1,0 +1,101 @@
+---
+## Our goal is to create a playbook that perform pre-checks, changes, and post-checks.
+## Upon a failure / error, the playbook will "ROLLBACK" any changes it has made thus far.
+## This playbook can serve as a template for constructing 'intelligent' playbooks
+## within your enterprise
+
+ - name: A playbook demonstrating Error Handling techniques
+   hosts: planetexpress
+   gather_facts: yes
+
+   vars:
+           # list of services to install (seperated by commas and available in the apt repo)
+           # apached = apache http server
+           # vsftpd = sftp server
+           apps_to_install: [apache2, vsftpd]
+
+   tasks:
+           ## our job is to install some software on ONLY Debian hosts within the network
+           ## therefore our PRECHECK PHASE needs to involve a 'check' to ensure we ONLY are on
+           ## Debian hosts
+           - name: PRECHECK PHASE
+             block:
+                  - name: Ensure the platforms we logged into are Debian
+                    fail:
+                            msg: "Ansible has detected this host is not part of the Debian family."
+                    when: ansible_os_family != "Debian"
+
+             rescue:
+                  - name: PRECHECK PHASE - FAILED
+                    fail:
+                            msg: "PRECHECK PHASE - FAILED. Nothing to rollback. Exiting..."
+
+
+           ## this is the block containing the work we actually want to do
+           - name: MAINTENANCE PHASE
+             block:
+                  - name: Install services(s) to our remote host(s)
+                    apt:
+                            state: present
+                            name: "{{ apps_to_install }}"
+                    become: yes
+
+                  - name: Turn up the service(s) installed on our remote host(s)
+                    service:
+                            name: "{{ item }}"
+                            state: started
+                    loop: "{{ apps_to_install }}"
+                    become: yes
+
+             ## this rescue only runs if the BLOCK fails
+             rescue:
+                  - name: Remove services(s) on our remote host(s)
+                    apt:
+                            state: absent
+                            name: "{{ apps_to_install }}"
+                    become: yes
+
+                  - name: MAINTENANCE PHASE - FAILED
+                    fail:
+                            msg: "MAINTENANCE PHASE - FAILED. Rollback complete. Exiting..."
+
+           - name: POSTCHECK PHASE
+             block:
+
+                  - name: populate service facts
+                    service_facts:
+
+                  - name: Print out the service facts
+                    debug:
+                            var: ansible_facts.services
+
+                  - name: Ensure all of the new services installed
+                    fail:
+                            msg: "Ansible has detected not all services have installed."
+                    when: ansible_facts.services.get(item).state != "running"
+                    loop: "{{ apps_to_install }}"
+
+             ## this rescue only runs if the BLOCK fails
+             rescue:
+                  - name: Remove services(s) on our remote host(s)
+                    apt:
+                            state: absent
+                            name: "{{ apps_to_install }}"
+                    become: yes
+
+                  - name: MAINTENANCE PHASE - FAILED
+                    fail:
+                            msg: "POSTCHECK PHASE - FAILED. Rollback complete. Exiting..."         
+
+            ## in a real deployment you might consider an ALWAYS section to provide the results
+            ## of how the playbook ran
+            # always:
+            #      - name: EXAMPLE - Email your team the results of the playbook
+            #        mail:   # mail module is used to send SMTP (email)
+            #           host:
+            #           port:
+            #           password:
+            #           username:
+            #           subject:
+            #           body: send an email with results via the mail module  
+

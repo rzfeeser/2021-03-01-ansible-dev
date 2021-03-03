@@ -1,0 +1,19 @@
+---
+ - name: Learning about blocks
+   hosts: planetexpress
+
+   vars:
+           sky: sunny
+
+   tasks:
+           - name: Learning about blocking tasks
+             block:
+                - name: First shell command
+                  shell: "echo 'My single task ran' > example.txt"
+       
+                - name: Second shell command
+                  shell: "echo 'My second task ran' >> example.txt"
+       
+                - name: Third shell command
+                  shell: "echo 'My third task ran' >> example.txt"
+             when: sky == "sunny"

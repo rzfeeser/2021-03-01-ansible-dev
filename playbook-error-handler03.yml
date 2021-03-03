@@ -1,0 +1,19 @@
+---
+ - name: A playbook that throws an error in the block.
+   hosts: planetexpress
+
+   tasks:
+    - block:
+       - shell: "echo 'My single task ran' > example.txt"
+       - shell: "echo 'My second task ran' >> example.txt"
+       - shell: "/bin/false" # This always returns a false value
+      rescue:
+       - name: RESCUE RUNNING
+         shell: "echo 'My rescue code ran. Maybe it undoes whatever the block tried to do' >> example.txt"
+      always:
+       - name: ALWAYS RUNNING
+         shell: "echo 'This always runs. Maybe it is a commit, or an entry in a log' >> example.txt"
+
+
+    - name: OUTSIDE BLOCK (LAST TASK) 
+      shell: "echo 'just keep on truckin!'"

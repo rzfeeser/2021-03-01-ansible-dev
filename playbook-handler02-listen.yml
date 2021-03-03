@@ -1,0 +1,80 @@
+---
+- name: Apache server installed
+  hosts: web
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  # the package module tries to select
+  # yum or apt or pkg5 (etc) automatically
+  # if any of these services need installed or
+  # updated, then they ALL get restarted
+  - name: latest Apache version installed
+    package:
+      name:
+        - apache2        ## <-- updated
+        - mariadb-server ## <-- updated
+        - mariadb-client ## <-- updated
+      state: latest
+    notify:
+      - restart_webservices ## <-- updated
+
+  - name: Apache enabled and running
+    service:
+      name: apache2
+      enabled: yes
+      state: started
+
+  # Copy index.html into the service
+  - name: copy index.html
+    copy:
+      src: ~/ans/files/index.html
+      dest: /var/www/html/
+
+  # if dest is directory download every time
+  # but only replace if destination is different
+  # https://raw.githubusercontent.com/rzfeeser/
+  #              alta3files/master/apache2.conf
+  - name: Download a copy of apache2.conf
+    get_url:
+      url: https://raw.githubusercontent.com/rzfeeser/alta3files/master/apache2.conf
+      dest: /etc/apache2/
+    notify:
+        - restart_apache   # ONLY restart apache if this conf
+                           # file needs updated
+
+  # ensure the mysql service is up and running
+  - name: mysql (mariadb) is running
+    service:
+      name: mysql
+      enabled: yes
+      state: started
+
+  # if this line needs added to my.cnf
+  # then ONLY the mysql service needs restarted
+  - name: Modify SQL conf file to listen on all interfaces
+    lineinfile:
+      dest: /etc/mysql/my.cnf
+      regexp: "^bind-address"
+      line: "bind-address=0.0.0.0"
+    notify:
+      - restart_mysql
+
+  # This will ONLY run if the associated tasks run
+  # no matter how many times called these tasks
+  # will ONLY run once
+  handlers:
+  - name: restart_apache
+    service:
+      name: apache2
+      state: restarted
+    listen: restart_webservices
+
+  ## this is new, restarts mysql
+  - name: restart_mysql
+    service:
+      name: mysql
+      state: restarted
+    listen: restart_webservices
+
