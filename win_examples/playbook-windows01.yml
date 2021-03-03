@@ -1,0 +1,29 @@
+---
+- name: Learning to Use Ansible for Windows automation
+  hosts: win_servers
+  #connection: winrm   # we already mapped this in our inventory
+  gather_facts: yes
+
+  vars:
+          nasa_apod: "https://www.nasa.gov/sites/default/files/thumbnails/image/apod.jpg"
+
+  tasks:
+          - name: Start with win_ping
+            win_ping:
+
+          - name: Get a fun background graphic
+            win_get_url:
+                    url: "{{ nasa_apod }}"
+                    dest: "C:\\Users\\{{ ansible_user }}\\Desktop\\nasa_apod.jpg"
+
+          - name: Grab a list of windows services
+            ansible.windows.win_service_info:
+            register: results
+
+          - name: What results did we get??
+            debug:
+                    var: results
+
+          - name: What did gather_facts return??
+            debug:
+                    var: ansible_facts

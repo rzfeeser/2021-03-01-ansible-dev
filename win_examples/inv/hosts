@@ -1,0 +1,6 @@
+[win_servers]
+apollo ansible_host=192.168.70.166 ansible_user=hypnos ansible_password=glazedglass77
+
+[win_servers:vars]
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
