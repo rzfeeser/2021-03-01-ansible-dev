@@ -1,0 +1,17 @@
+---
+- name: Ansilbe RESTful API (HTTP) lookup
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+          - name: Use the uri module
+            uri:
+                    method: GET
+                    url: http://localhost:9876/alta3
+            register: results
+
+          - name: debug
+            debug:
+                    var: results.json

@@ -1,0 +1,17 @@
+---
+- name: Ansilbe RESTful API (HTTP) lookup
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+          - name: Use the uri module
+            uri:
+                    method: GET
+                    url: http://api.open-notify.org/iss-now.json
+            register: results
+
+          - name: debug
+            debug:
+                    var: results.json

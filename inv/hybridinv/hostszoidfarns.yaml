@@ -1,0 +1,14 @@
+---
+all:
+        hosts:
+                zoidberg:
+                        ansible_host: 10.10.2.5
+                        ansible_user: zoidberg
+                        ansible_python_interpreter: /usr/bin/python
+                        ansible_ssh_pass: alta3
+                farnsworth:
+                        ansible_host: 10.10.2.6
+                        ansible_user: farnsworth
+                        ansible_python_interpreter: /usr/bin/python
+                        ansible_ssh_pass: alta3
+
