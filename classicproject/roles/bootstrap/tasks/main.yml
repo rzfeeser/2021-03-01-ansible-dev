@@ -1,0 +1,6 @@
+---
+# tasks file for bootstrap
+#
+- name: Debug a var
+  debug:
+          var: zvar

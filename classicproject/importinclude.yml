@@ -1,0 +1,14 @@
+---
+- name: Import vs include
+  hosts: all
+
+  tasks:
+          - name: set the value of zvar
+            set_fact:
+                    zvar: "this is the value of zvar"
+
+          - name: import (STATIC) PRE PROCESSING FAILS
+            include_role: 
+                 name: bootstrap
+            vars:
+                    zvar: "

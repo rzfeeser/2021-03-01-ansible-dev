@@ -1,0 +1,22 @@
+---
+- name: Looking up file data
+  hosts: localhost
+  connection: local
+
+  vars:
+          filecontents: "{{ lookup('file', 'juliet.example') }}"
+
+  tasks:
+
+          - name: set the value of a var to a file contents
+            set_fact:
+                    filecontentsduex: "{{ lookup('file', 'juliet.example') }}"
+
+          - name: Show off how easy it is to display file contents
+            debug:
+                    var: filecontents
+
+
+          - name: Show off how easy it is to display vars on the fly
+            debug:
+                    var: filecontentsduex
