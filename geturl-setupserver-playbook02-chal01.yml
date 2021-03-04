@@ -5,12 +5,6 @@
   connection: ssh
   become: yes
 
-  vars:
-          un: sammy
-          pw: larry
-
-
-
   tasks:
   - name: Install apache2 server and ensure pip is installed
     apt:

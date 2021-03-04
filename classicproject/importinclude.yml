@@ -1,14 +1,13 @@
 ---
 - name: Import vs include
   hosts: all
+  gather_facts: yes
 
   tasks:
-          - name: set the value of zvar
-            set_fact:
-                    zvar: "this is the value of zvar"
+            #- name: include (DYNAMIC) POST PROCESSING WORKS
+            #include_tasks: "{{ ansible_os_family }}.yml"
 
-          - name: import (STATIC) PRE PROCESSING FAILS
-            include_role: 
-                 name: bootstrap
-            vars:
-                    zvar: "
+            - name: import (STATIC) PRE PROCESSING FAILS (facts not yet gathered)
+              import_tasks: "{{ ansible_os_family }}.yml"
+
+

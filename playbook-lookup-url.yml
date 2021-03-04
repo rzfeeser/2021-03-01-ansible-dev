@@ -1,0 +1,32 @@
+- name: Ansible and RESTful interfaces
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+          astros: "{{ lookup('url', 'http://api.open-notify.org/astros.json') }}"
+          spacecowboys: []
+
+  tasks:
+          - name: Quick iss api checkup
+            debug:
+                    msg: "Today on the ISS are: {{ astros.people }}"
+
+          - name: Loop through our data and display each dict (name and craft)
+            debug:
+                    msg: "Loop across ISS data: {{ item }}"
+            loop: "{{ astros.people }}"
+
+          - name: Loop through our data and display ONLY first and last names
+            debug:
+                    msg: "Astro names are: {{ item.name }}"
+            loop: "{{ astros.people }}"
+
+          - name: Create a new list with ansible of astro names
+            set_fact:
+                    spacecowboys: "{{ astros.people|map(attribute='name')|list }}"
+
+          - name: Only display the first names of the astros
+            debug:
+                    msg: "{{ item.split()[0] }}"
+            loop: "{{ spacecowboys }}"
+
