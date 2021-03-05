@@ -1,0 +1,10 @@
+---
+# tasks file for alta3.example
+- name: Molecule Hello World!
+  debug:
+    msg: Hello, World!
+
+# install cowsay
+- name: install cowsay
+  package:
+    name: cowsay

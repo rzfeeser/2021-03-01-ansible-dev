@@ -1,0 +1,16 @@
+---
+- name: Playbook that runs a Python script
+  hosts: localhost
+
+  tasks:
+  - name: Copy script to target hosts and execute it
+    script: ~/ans/scripts/nasaLookup.py
+    args:
+      executable: /usr/bin/python3
+    register: results    # save the JSON sent back by our script
+
+  - name: Print out the 'results'
+    debug:
+      var: results
+      # notice there is a stdout and stdout_lines
+

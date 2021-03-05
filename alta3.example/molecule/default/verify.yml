@@ -1,0 +1,23 @@
+---
+# This is an example playbook to execute Ansible tests.
+#
+- name: Verify
+  hosts: all
+  tasks:
+  
+  # Review how to use the assert module
+  # https://docs.ansible.com/ansible/latest/modules/assert_module.html
+  - name: Example assertion
+    assert:
+      that: true  # test "that" true is true (its a silly test, it will always "work")
+
+  - name: Cowsay says hello
+    command: cowsay "hello"   # attempt to use the program cowsay
+    register: result      # this contains a run code that reveals if the command was successful
+
+  # Review how to use the assert module
+  # https://docs.ansible.com/ansible/latest/modules/assert_module.html
+  - name: Perform an assertion test. This will fail if result.rc is not equal to 0
+    assert:
+      that: result.rc == 0
+
