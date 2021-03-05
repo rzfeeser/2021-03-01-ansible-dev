@@ -1,0 +1,39 @@
+---
+- name: Connect to VMWare Sphere to get info on clusters
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  # install guide @ 
+  # https://docs.ansible.com/ansible/devel/scenario_guides/guide_vmware_rest.html
+  # python3 -m pip install aiohttp
+
+  vars:
+          vch: vcenter.host.example
+          vcu: adminuser
+          vcp: vcenterpass123
+
+  # this collection is avail @
+  # https://galaxy.ansible.com/vmware/vmware_rest
+  collection:
+          - vmware.vmware_rest
+
+  tasks:
+        - name: Build a list of all the clusters
+          vcenter_cluster_info:
+                  vcenter_host: "{{ vch }}"
+                  vcenter_username: "{{ vcu }}"
+                  vcenter_password: "{{ vcp }}"
+          register: all_the_clusters
+
+        - name: Show what facts were just gathered up about the clusters
+          debug:
+                  var: all_the_clusters
+
+
+      #  is method is req. if you do
+      #        not use the "collections:" keyword
+      #        
+      # - name: Build a list of all the clusters
+      #   vmware.vmware_rest.vcenter_cluster_info:
+      #   vcenter_cluster_info:
+      #   register: all_the_clusters
