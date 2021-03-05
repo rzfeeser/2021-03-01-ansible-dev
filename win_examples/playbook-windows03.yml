@@ -1,0 +1,26 @@
+---
+- name: Learning to Use Ansible for Windows automation
+  hosts: win_servers
+  #connection: winrm   # we already mapped this in our inventory
+  gather_facts: yes
+
+  vars:
+          #cmdrun: "Set-Content -Path C:\test3.txt -Value 'This worked. '"
+
+  tasks:
+          - name: Issuing a single line powershell command
+            win_shell: Set-Content -Path C:\test.txt -Value 'Hello there. '
+
+            #- name: Issue a single line powershell command via a variable
+            #win_shell: "{{ cmdrun }}"
+
+          - name: Run a multi-lined shell command
+            win_shell: |
+                    $text = Get-Content C:\test.txt
+                    $text += ' General Kenobi... you ARE a bold one...'
+                    Set-Content -Path C:\test2.txt -Value $text
+
+          - name: Copy a single file
+            win_copy:
+                    src: moveme.ps1
+                    dest: C:\moveme.ps1
